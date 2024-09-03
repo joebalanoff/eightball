@@ -44,7 +44,7 @@ public class Ball {
     }
 
     public void checkCollision(Ball other) {
-        if (other == this) return; // Ignore self-collision
+        if (other == this) return;
 
         double dx = other.x - this.x;
         double dy = other.y - this.y;
@@ -52,18 +52,15 @@ public class Ball {
         double overlap = this.radius + other.radius - distance;
 
         if (distance < this.radius + other.radius) {
-            // Normalize the collision vector
             double nx = dx / distance;
             double ny = dy / distance;
 
-            // Calculate the overlap vector and adjust positions
             double moveDistance = overlap / 2;
             this.x -= moveDistance * nx;
             this.y -= moveDistance * ny;
             other.x += moveDistance * nx;
             other.y += moveDistance * ny;
 
-            // Calculate relative velocity
             double tx = -ny;
             double ty = nx;
 
@@ -75,7 +72,6 @@ public class Ball {
             double m1 = MASS;
             double m2 = MASS;
 
-            // Exchange momentum
             double v1nFinal = (v1n * (m1 - m2) + 2 * m2 * v2n) / (m1 + m2);
             double v2nFinal = (v2n * (m2 - m1) + 2 * m1 * v1n) / (m1 + m2);
 
